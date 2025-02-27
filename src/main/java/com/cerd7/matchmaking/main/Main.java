@@ -11,7 +11,7 @@ public class Main {
     {
         //Add player on queue
         List<Player> queue = new ArrayList<>();
-        queue.add(new Player("1111", "Juninho27",0, 10, 8));
+        queue.add(new Player("1111", "Juninho27",0, 10, 2));
         queue.add(new Player("2222", "BrunoBalaTensa", 0, 10, 4));
         queue.add(new Player("3333", "JoaoReiDuGado", 0, 10, 5));
         queue.add(new Player("4444", "TropaDoInguica", 0, 10, 3));

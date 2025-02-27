@@ -9,13 +9,13 @@ public class MatchMaker
     //calculate score player
     private void calculateScore(Player player)
     {
-        int gamePlayed = player.getIgamePlayed();
-        int victory = player.getIvictory();
+        int gamePlayed = player.getGamePlayed();
+        int victory = player.getVictory();
         int defeat = gamePlayed - victory;
 
         int scorePlayer = (victory * 10) - (defeat * 5);
 
-        player.setiskillLevel(scorePlayer);
+        player.setSkillLevel(scorePlayer);
     }
 
     public List<List<Player>> createMatches(List<Player> queue)
@@ -29,11 +29,11 @@ public class MatchMaker
 
         List<List<Player>> matches = new ArrayList<>();
 
-        while (queue.size() >= 2)
+        while (!queue.isEmpty())
         {
-            List<Player> match = new ArrayList<>(queue.subList(0, 2));
+            List<Player> match = new ArrayList<>(queue.subList(0, 1));
             matches.add(match);
-            queue.subList(0, 2).clear();
+            queue.subList(0, 1).clear();
         }
         return matches;
     }

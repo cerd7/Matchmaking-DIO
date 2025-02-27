@@ -2,45 +2,59 @@ package com.cerd7.matchmaking.models;
 
 public class Player {
     //player info:
-    final private String sId;
-    private int iSkillLevel;
-    final private String sNickname;
-    final private int iGamePlayed;
-    final private int iVictory;
+    String id;
+    Integer skillLevel;
+    String nickname;
+    Integer gamePlayed;
+    Integer victory;
 
     //Object player
-    public Player(String sId, String sNickname, int iSkillLevel, int iGamePlayed, int iVictory) {
-        this.sId = sId;
-        this.sNickname = sNickname;
-        this.iSkillLevel = iSkillLevel;
-        this.iGamePlayed = iGamePlayed;
-        this.iVictory = iVictory;
+    public Player(String id, String nickname, Integer skillLevel, Integer gamePlayed, Integer victory) {
+        this.id = id;
+        this.nickname = nickname;
+        this.skillLevel = skillLevel;
+        this.gamePlayed = gamePlayed;
+        this.victory = victory;
     }
     //Getters and setters
-    public int getIgamePlayed()
-    {
-        return iGamePlayed;
-    }
-
-    public int getIvictory()
-    {
-        return iVictory;
-    }
 
     public String getId() {
-        return sId;
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Integer getSkillLevel() {
+        return skillLevel;
+    }
+
+    public void setSkillLevel(Integer skillLevel) {
+        this.skillLevel = skillLevel;
     }
 
     public String getNickname() {
-        return sNickname;
+        return nickname;
     }
 
-    public int getSkillLevel() {
-        return iSkillLevel;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
-    public void setiskillLevel(int iSkillLevel)
-    {
-        this.iSkillLevel = iSkillLevel;
+    public Integer getGamePlayed() {
+        return gamePlayed;
+    }
+
+    public void setGamePlayed(Integer gamePlayed) {
+        this.gamePlayed = gamePlayed;
+    }
+
+    public Integer getVictory() {
+        return victory;
+    }
+
+    public void setVictory(Integer victory) {
+        this.victory = victory;
     }
 }
