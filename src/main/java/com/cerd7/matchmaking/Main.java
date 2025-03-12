@@ -1,4 +1,4 @@
-package com.cerd7.matchmaking.main;
+package com.cerd7.matchmaking;
 
 public class Main {
     public static void main(String[] args) {
