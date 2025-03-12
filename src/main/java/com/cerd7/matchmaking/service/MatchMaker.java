@@ -1,12 +1,13 @@
 package com.cerd7.matchmaking.service;
 
 import com.cerd7.matchmaking.models.Player;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MatchMaker
 {
-    //calculate score player
+    //----> calculate score player <----\\
     private void calculateScore(Player player)
     {
         int gamePlayed = player.getGamePlayed();
@@ -18,6 +19,7 @@ public class MatchMaker
         player.setSkillLevel(scorePlayer);
     }
 
+    //----> create match <----\\
     public List<List<Player>> createMatches(List<Player> queue)
     {
         for(Player player: queue)

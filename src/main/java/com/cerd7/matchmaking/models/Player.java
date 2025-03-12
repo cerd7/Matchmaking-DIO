@@ -1,45 +1,26 @@
 package com.cerd7.matchmaking.models;
 
 public class Player {
-    //player info:
-    String id;
+    /*-- player info: --*/
     Integer skillLevel;
-    String nickname;
     Integer gamePlayed;
     Integer victory;
 
-    //Object player
-    public Player(String id, String nickname, Integer skillLevel, Integer gamePlayed, Integer victory) {
-        this.id = id;
-        this.nickname = nickname;
+    /*-- Object player --*/
+    public Player(Integer skillLevel, Integer gamePlayed, Integer victory)
+    {
         this.skillLevel = skillLevel;
         this.gamePlayed = gamePlayed;
         this.victory = victory;
     }
-    //Getters and setters
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
+    /*-- Getters and setters --*/
     public Integer getSkillLevel() {
         return skillLevel;
     }
 
     public void setSkillLevel(Integer skillLevel) {
         this.skillLevel = skillLevel;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
     }
 
     public Integer getGamePlayed() {
