@@ -1,41 +1,60 @@
 package com.cerd7.matchmaking.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Player {
-    /*-- player info: --*/
-    Integer skillLevel;
-    Integer gamePlayed;
-    Integer victory;
+    @JsonProperty("Name")
+    private String nickname;
+    @JsonProperty("Country")
+    private String country;
+    @JsonProperty("In the queue")
+    private boolean inQueue;
+    @JsonProperty("Status player")
+    private PlayerStatus playerStatus;
 
-    /*-- Object player --*/
-    public Player(Integer skillLevel, Integer gamePlayed, Integer victory)
+    public Player()
     {
-        this.skillLevel = skillLevel;
-        this.gamePlayed = gamePlayed;
-        this.victory = victory;
     }
 
-    /*-- Getters and setters --*/
-    public Integer getSkillLevel() {
-        return skillLevel;
+    public Player(String nickname, String country, boolean inQueue, PlayerStatus playerStatus)
+    {
+        this.nickname = nickname;
+        this.country = country;
+        this.inQueue = inQueue;
+        this.playerStatus = playerStatus;
     }
 
-    public void setSkillLevel(Integer skillLevel) {
-        this.skillLevel = skillLevel;
+    public String getNickname() {
+        return nickname;
     }
 
-    public Integer getGamePlayed() {
-        return gamePlayed;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
-    public void setGamePlayed(Integer gamePlayed) {
-        this.gamePlayed = gamePlayed;
+    public String getCountry() {
+        return country;
     }
 
-    public Integer getVictory() {
-        return victory;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
-    public void setVictory(Integer victory) {
-        this.victory = victory;
+    public boolean isInQueue() {
+        return inQueue;
+    }
+
+    public boolean setInQueue(boolean inQueue) {
+        return this.inQueue = inQueue;
+    }
+
+    public PlayerStatus getPlayerStatus() {
+        return playerStatus;
+    }
+
+    public void setPlayerStatus(PlayerStatus playerStatus) {
+        this.playerStatus = playerStatus;
     }
 }

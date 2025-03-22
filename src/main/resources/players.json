@@ -1,0 +1,24 @@
+[
+  {
+    "Name": "Caio",
+    "Country": "BRA",
+    "In the queue": true,
+    "Status player": {
+      "winRate": 3.0,
+      "victory": 10,
+      "elo": "gold",
+      "qtyGamePlayed": 20
+    }
+  },
+  {
+    "Name": "Caio",
+    "Country": "BRA",
+    "In the queue": true,
+    "Status player": {
+      "winRate": 0.0,
+      "victory": 10,
+      "elo": "Legendary",
+      "qtyGamePlayed": 30
+    }
+  }
+]

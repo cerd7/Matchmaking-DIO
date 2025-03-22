@@ -2,11 +2,15 @@ package com.cerd7.matchmaking.service;
 
 import com.cerd7.matchmaking.models.Player;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class MatchMaker
+public interface MatchService
 {
+    void createPayer(String name, String country, boolean inQueue, Integer gamePlayed, Integer victory);
+
+    String calculateElo(Integer victory, Integer gamePlayed);
+
+    public Double calculateWinRate(Integer gamePlayed, Integer victory);
+}
+   /*
     //----> calculate score player <----\\
     private void calculateScore(Player player)
     {
@@ -38,5 +42,4 @@ public class MatchMaker
             queue.subList(0, 1).clear();
         }
         return matches;
-    }
-}
+    }*/
