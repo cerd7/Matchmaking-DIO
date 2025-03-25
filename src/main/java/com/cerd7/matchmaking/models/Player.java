@@ -5,13 +5,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Player {
-    @JsonProperty("Name")
+
+    @JsonProperty("name")
     private String nickname;
-    @JsonProperty("Country")
+
+    @JsonProperty("country")
     private String country;
-    @JsonProperty("In the queue")
+
+    @JsonProperty("inQueue")
     private boolean inQueue;
-    @JsonProperty("Status player")
+
+    @JsonProperty("statusPlayer")
     private PlayerStatus playerStatus;
 
     public Player()
@@ -46,8 +50,8 @@ public class Player {
         return inQueue;
     }
 
-    public boolean setInQueue(boolean inQueue) {
-        return this.inQueue = inQueue;
+    public void setInQueue(boolean inQueue) {
+        this.inQueue = inQueue;
     }
 
     public PlayerStatus getPlayerStatus() {

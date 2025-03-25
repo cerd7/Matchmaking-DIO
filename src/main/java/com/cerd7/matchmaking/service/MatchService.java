@@ -1,7 +1,5 @@
 package com.cerd7.matchmaking.service;
 
-import com.cerd7.matchmaking.models.Player;
-
 public interface MatchService
 {
     void createPayer(String name, String country, boolean inQueue, Integer gamePlayed, Integer victory);

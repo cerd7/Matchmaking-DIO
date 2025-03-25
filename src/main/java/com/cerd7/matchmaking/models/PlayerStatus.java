@@ -1,13 +1,22 @@
 package com.cerd7.matchmaking.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PlayerStatus
 {
+
+    @JsonProperty("winRate")
     private Double winRate;
-    private Integer QtyGamePlayed;
+
+    @JsonProperty("qtyGamePlayed")
+    private Integer qtyGamePlayed;
+
+    @JsonProperty("victory")
     private Integer victory;
+
+    @JsonProperty("elo")
     private String elo;
 
     public PlayerStatus()
@@ -22,11 +31,11 @@ public class PlayerStatus
     }
 
     public Integer getQtyGamePlayed() {
-        return QtyGamePlayed;
+        return qtyGamePlayed;
     }
 
     public void setQtyGamePlayed(Integer qtyGamePlayed) {
-        QtyGamePlayed = qtyGamePlayed;
+        this.qtyGamePlayed = qtyGamePlayed;
     }
 
     public Integer getVictory() {

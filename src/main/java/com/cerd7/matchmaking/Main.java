@@ -20,7 +20,7 @@ public class Main {
         Integer gamePlayed = sc.nextInt();
         Integer victory = sc.nextInt();
 
-        matchController.createPayer(name, pais, intQueue, gamePlayed, victory);
+        matchController.createPayer(name, pais, intQueue, victory, gamePlayed);
     }
  }
         //----> Add player on queue <----\\

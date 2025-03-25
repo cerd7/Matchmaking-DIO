@@ -5,14 +5,14 @@ import com.cerd7.matchmaking.models.PlayerStatus;
 import com.cerd7.matchmaking.repository.PlayerRepository;
 import com.cerd7.matchmaking.service.MatchService;
 
-public class MatchServiceIMP implements MatchService
+public class MatchServiceImp implements MatchService
 {
-    private Player player = new Player();
-    private PlayerRepository playerRepository = new PlayerRepository();
+    private final PlayerRepository playerRepository = new PlayerRepository();
 
     @Override
     public void createPayer(String name, String country, boolean inQueue, Integer gamePlayed, Integer victory)
     {
+        Player player = new Player();
         PlayerStatus playerStatus = new PlayerStatus();
 
         player.setNickname(name);
@@ -26,23 +26,19 @@ public class MatchServiceIMP implements MatchService
 
         player.setPlayerStatus(playerStatus);
 
-        if(player != null)
-        {
-            playerRepository.addPlayers(player);
-        }
-        else
-        {
-            System.out.println("Pending information");
-        }
-
+        playerRepository.addPlayers(player);
     }
 
     @Override
     public String calculateElo(Integer victory, Integer gamePlayed)
     {
         String elo;
+        System.out.println("victory: " + victory);
+        System.out.println("gamePlayed: " + gamePlayed);
         int defeat = victory - gamePlayed;
-        int scorePlayer = (victory * 10) - (defeat * 5);
+
+        System.out.println("Defeat: " + defeat);
+        int scorePlayer = ((victory * 5) - (defeat * 5));
 
         if(scorePlayer <= 10)
         {
@@ -75,6 +71,6 @@ public class MatchServiceIMP implements MatchService
     public Double calculateWinRate(Integer gamePlayed, Integer victory) {
         Double winRate;
         int defeat = victory - gamePlayed;
-        return (double) ((defeat + victory) / gamePlayed);
+        return gamePlayed == 0 ? 0.0 : (victory.doubleValue() / gamePlayed) * 100;
     }
 }

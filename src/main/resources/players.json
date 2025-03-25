@@ -1,24 +1,113 @@
 [
   {
-    "Name": "Caio",
-    "Country": "BRA",
-    "In the queue": true,
-    "Status player": {
-      "winRate": 3.0,
-      "victory": 10,
-      "elo": "gold",
-      "qtyGamePlayed": 20
+    "name": null,
+    "country": null,
+    "inQueue": false,
+    "statusPlayer": null
+  },
+  {
+    "name": null,
+    "country": null,
+    "inQueue": false,
+    "statusPlayer": null
+  },
+  {
+    "name": "Junin",
+    "country": "CHI",
+    "inQueue": true,
+    "statusPlayer": {
+      "winRate": 50.0,
+      "qtyGamePlayed": 10,
+      "victory": 5,
+      "elo": "Legendary"
     }
   },
   {
-    "Name": "Caio",
-    "Country": "BRA",
-    "In the queue": true,
-    "Status player": {
-      "winRate": 0.0,
+    "name": "GG",
+    "country": "BRA",
+    "inQueue": true,
+    "statusPlayer": {
+      "winRate": 60.0,
+      "qtyGamePlayed": 25,
+      "victory": 15,
+      "elo": "Legendary"
+    }
+  },
+  {
+    "name": "HH",
+    "country": "BRA",
+    "inQueue": true,
+    "statusPlayer": {
+      "winRate": 33.33333333333333,
+      "qtyGamePlayed": 30,
       "victory": 10,
-      "elo": "Legendary",
-      "qtyGamePlayed": 30
+      "elo": "Legendary"
+    }
+  },
+  {
+    "name": "Caio",
+    "country": "RUS",
+    "inQueue": true,
+    "statusPlayer": {
+      "winRate": 50.0,
+      "qtyGamePlayed": 20,
+      "victory": 10,
+      "elo": "Gold"
+    }
+  },
+  {
+    "name": "Caio",
+    "country": "hh",
+    "inQueue": true,
+    "statusPlayer": {
+      "winRate": 25.0,
+      "qtyGamePlayed": 40,
+      "victory": 10,
+      "elo": "Legendary"
+    }
+  },
+  {
+    "name": "caio",
+    "country": "yuyu",
+    "inQueue": true,
+    "statusPlayer": {
+      "winRate": 300.0,
+      "qtyGamePlayed": 10,
+      "victory": 30,
+      "elo": "Iron"
+    }
+  },
+  {
+    "name": "Caio",
+    "country": "BRa",
+    "inQueue": true,
+    "statusPlayer": {
+      "winRate": 80.0,
+      "qtyGamePlayed": 50,
+      "victory": 40,
+      "elo": "Legendary"
+    }
+  },
+  {
+    "name": "Caio",
+    "country": "BRA",
+    "inQueue": true,
+    "statusPlayer": {
+      "winRate": 37.5,
+      "qtyGamePlayed": 40,
+      "victory": 15,
+      "elo": "Gold"
+    }
+  },
+  {
+    "name": "Caio",
+    "country": "JUJU",
+    "inQueue": true,
+    "statusPlayer": {
+      "winRate": 333.33333333333337,
+      "qtyGamePlayed": 15,
+      "victory": 50,
+      "elo": "Legendary"
     }
   }
 ]
