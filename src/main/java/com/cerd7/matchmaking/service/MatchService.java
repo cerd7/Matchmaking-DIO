@@ -1,26 +1,20 @@
 package com.cerd7.matchmaking.service;
 
+import com.cerd7.matchmaking.models.Player;
+
+import java.util.List;
+
 public interface MatchService
 {
-    void createPayer(String name, String country, boolean inQueue, Integer gamePlayed, Integer victory);
+    void createPlayer(String name, String country, boolean inQueue, Integer gamePlayed, Integer victory);
 
-    String calculateElo(Integer victory, Integer gamePlayed);
+    String calculateElo(Integer gamePlayed, Integer victory);
 
-    public Double calculateWinRate(Integer gamePlayed, Integer victory);
+    Double calculateWinRate(Integer gamePlayed, Integer victory);
+
+    List<List<Player>> createMatches();
 }
-   /*
-    //----> calculate score player <----\\
-    private void calculateScore(Player player)
-    {
-        int gamePlayed = player.getGamePlayed();
-        int victory = player.getVictory();
-        int defeat = gamePlayed - victory;
-
-        int scorePlayer = (victory * 10) - (defeat * 5);
-
-        player.setSkillLevel(scorePlayer);
-    }
-
+/*
     //----> create match <----\\
     public List<List<Player>> createMatches(List<Player> queue)
     {

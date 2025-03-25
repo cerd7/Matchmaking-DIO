@@ -11,6 +11,6 @@ public class MatchController
 
     public void createPayer(String name, String country, boolean inQueue, Integer gamePlayed, Integer victory)
     {
-        matchServiceIMP.createPayer(name,country,inQueue, gamePlayed, victory);
+        matchServiceIMP.createPlayer(name,country,inQueue, gamePlayed, victory);
     }
 }

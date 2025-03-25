@@ -26,7 +26,7 @@ public class PlayerRepository {
         }
     }
 
-    public void addPlayers(Player player) {
+    public void createPlayers(Player player) {
         try {
             if (file.exists() && file.length() > 0) {
                 lookingPlayers = objectMapper.readValue(new File(String.valueOf(file)), objectMapper.getTypeFactory().constructCollectionType(List.class, Player.class));
@@ -44,6 +44,32 @@ public class PlayerRepository {
             }
         } catch (Exception e) {
             System.out.println("player don't add " + e.getMessage());
+        }
+    }
+
+    public List<List<Player>> createMatches()
+    {
+        try
+        {
+            lookingPlayers = objectMapper.readValue(file,  objectMapper.getTypeFactory().constructCollectionType(List.class, Player.class));
+
+            lookingPlayers.sort((p1, p2) -> Double.compare(p2.getPlayerStatus().getWinRate(), p1.getPlayerStatus().getWinRate()));
+
+            List<List<Player>> matches = new ArrayList<>();
+
+            while(!lookingPlayers.isEmpty())
+            {
+                List<Player> match = new ArrayList<>(lookingPlayers.subList(0, 2));
+                matches.add(match);
+                lookingPlayers.subList(0, 2).clear();
+                System.out.println("Match created");
+            }
+
+            return matches;
+        }
+        catch (Exception e)
+        {
+            throw new RuntimeException(e);
         }
     }
 }

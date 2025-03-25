@@ -5,12 +5,14 @@ import com.cerd7.matchmaking.models.PlayerStatus;
 import com.cerd7.matchmaking.repository.PlayerRepository;
 import com.cerd7.matchmaking.service.MatchService;
 
+import java.util.List;
+
 public class MatchServiceImp implements MatchService
 {
     private final PlayerRepository playerRepository = new PlayerRepository();
 
     @Override
-    public void createPayer(String name, String country, boolean inQueue, Integer gamePlayed, Integer victory)
+    public void createPlayer(String name, String country, boolean inQueue, Integer gamePlayed, Integer victory)
     {
         Player player = new Player();
         PlayerStatus playerStatus = new PlayerStatus();
@@ -21,26 +23,34 @@ public class MatchServiceImp implements MatchService
 
         playerStatus.setVictory(victory);
         playerStatus.setQtyGamePlayed(gamePlayed);
-        playerStatus.setWinRate(calculateWinRate(gamePlayed, victory));
-        playerStatus.setElo(calculateElo(gamePlayed, victory));
+        playerStatus.setWinRate(calculateWinRate(playerStatus.getQtyGamePlayed(), playerStatus.getVictory()));
+        playerStatus.setElo(calculateElo(playerStatus.getQtyGamePlayed(), playerStatus.getVictory()));
 
         player.setPlayerStatus(playerStatus);
 
-        playerRepository.addPlayers(player);
+        playerRepository.createPlayers(player);
     }
 
     @Override
-    public String calculateElo(Integer victory, Integer gamePlayed)
+    public String calculateElo(Integer gamePlayed, Integer victory)
     {
         String elo;
+
         System.out.println("victory: " + victory);
         System.out.println("gamePlayed: " + gamePlayed);
-        int defeat = victory - gamePlayed;
+
+        int defeat = gamePlayed - victory;
 
         System.out.println("Defeat: " + defeat);
-        int scorePlayer = ((victory * 5) - (defeat * 5));
+        int scorePlayer = ((victory * 2) - (defeat * 2));
 
-        if(scorePlayer <= 10)
+        System.out.println("Score: " + scorePlayer);
+
+        if(scorePlayer < 0)
+        {
+            elo = "Unranked";
+        }
+        else if(scorePlayer <= 10)
         {
             elo = "Iron";
         }
@@ -69,8 +79,13 @@ public class MatchServiceImp implements MatchService
 
     @Override
     public Double calculateWinRate(Integer gamePlayed, Integer victory) {
-        Double winRate;
-        int defeat = victory - gamePlayed;
         return gamePlayed == 0 ? 0.0 : (victory.doubleValue() / gamePlayed) * 100;
+    }
+
+    @Override
+    public List<List<Player>> createMatches()
+    {
+
+        return List.of();
     }
 }
