@@ -83,9 +83,8 @@ public class MatchServiceImp implements MatchService
     }
 
     @Override
-    public List<List<Player>> createMatches()
+    public void createMatches()
     {
 
-        return List.of();
     }
 }

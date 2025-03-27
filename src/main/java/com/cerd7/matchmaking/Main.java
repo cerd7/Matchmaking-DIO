@@ -12,7 +12,7 @@ public class Main {
         MatchController matchController = new MatchController();
         PlayerRepository playerRepository = new PlayerRepository();
 
-        System.out.println("name");
+        /*System.out.println("name");
         String name = sc.next();
         System.out.println("country");
         String pais = sc.next();
@@ -22,9 +22,9 @@ public class Main {
         Integer gamePlayed = sc.nextInt();
         System.out.println("victory");
         Integer victory = sc.nextInt();
-
+*/
         playerRepository.createMatches();
-        matchController.createPayer(name, pais, intQueue, gamePlayed, victory);
+        //matchController.createPayer(name, pais, intQueue, gamePlayed, victory);
     }
  }
     /*

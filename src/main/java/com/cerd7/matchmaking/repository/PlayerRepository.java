@@ -5,8 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class PlayerRepository {
     private final File file = new File("src/main/resources/players.json");
@@ -47,29 +48,56 @@ public class PlayerRepository {
         }
     }
 
-    public List<List<Player>> createMatches()
-    {
-        try
-        {
-            lookingPlayers = objectMapper.readValue(file,  objectMapper.getTypeFactory().constructCollectionType(List.class, Player.class));
+    public void createMatches() {
+        try {
+            lookingPlayers = objectMapper.readValue(file, objectMapper.getTypeFactory()
+                    .constructCollectionType(List.class, Player.class));
 
-            lookingPlayers.sort((p1, p2) -> Double.compare(p2.getPlayerStatus().getWinRate(), p1.getPlayerStatus().getWinRate()));
+            List<Player> playersInQueue = lookingPlayers.stream()
+                    .filter(Player::getInQueue)
+                    .collect(Collectors.toList());
+
+            System.out.println("Players in queue: " + playersInQueue.size());
+
+            if (playersInQueue.isEmpty()) {
+                System.out.println("No players in queue. No matches created.");
+                return;
+            }
+
+            playersInQueue.sort(
+                    Comparator.comparing(Player::getCountry)
+                            .thenComparing((Player p) -> p.getPlayerStatus().getWinRate(), Comparator.reverseOrder())
+            );
 
             List<List<Player>> matches = new ArrayList<>();
 
-            while(!lookingPlayers.isEmpty())
-            {
-                List<Player> match = new ArrayList<>(lookingPlayers.subList(0, 2));
-                matches.add(match);
-                lookingPlayers.subList(0, 2).clear();
-                System.out.println("Match created");
+            while (playersInQueue.size() >= 2) {
+                Player p1 = playersInQueue.remove(0);
+
+                Optional<Player> opponent = playersInQueue.stream()
+                        .filter(p -> p.getCountry().equals(p1.getCountry())) // Apenas do mesmo país
+                        .findFirst();
+
+                if (opponent.isPresent()) {
+                    Player p2 = opponent.get();
+                    playersInQueue.remove(p2);
+                    matches.add(Arrays.asList(p1, p2));
+                    System.out.println("Match created: " + p1.getNickname() + " -- Elo: " + p1.getPlayerStatus().getElo() +
+                            " vs " + p2.getNickname() + " -- Elo: " + p2.getPlayerStatus().getElo() +
+                            " (Country: " + p1.getCountry() + ")");
+                } else {
+                    System.out.println("No match found for: " + p1.getNickname() + " (Country: " + p1.getCountry() + ")");
+                }
             }
 
-            return matches;
-        }
-        catch (Exception e)
-        {
-            throw new RuntimeException(e);
+            if (!playersInQueue.isEmpty()) {
+                System.out.println("Player not matched: " + playersInQueue.get(0).getNickname());
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading JSON: " + e.getMessage(), e);
         }
     }
+
+
 }

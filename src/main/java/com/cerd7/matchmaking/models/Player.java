@@ -46,7 +46,7 @@ public class Player {
         this.country = country;
     }
 
-    public boolean isInQueue() {
+    public boolean getInQueue() {
         return inQueue;
     }
 

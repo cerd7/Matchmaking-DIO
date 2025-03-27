@@ -1,9 +1,5 @@
 package com.cerd7.matchmaking.service;
 
-import com.cerd7.matchmaking.models.Player;
-
-import java.util.List;
-
 public interface MatchService
 {
     void createPlayer(String name, String country, boolean inQueue, Integer gamePlayed, Integer victory);
@@ -12,7 +8,7 @@ public interface MatchService
 
     Double calculateWinRate(Integer gamePlayed, Integer victory);
 
-    List<List<Player>> createMatches();
+    void createMatches();
 }
 /*
     //----> create match <----\\
