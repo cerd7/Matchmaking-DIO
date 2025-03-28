@@ -5,8 +5,6 @@ import com.cerd7.matchmaking.models.PlayerStatus;
 import com.cerd7.matchmaking.repository.PlayerRepository;
 import com.cerd7.matchmaking.service.MatchService;
 
-import java.util.List;
-
 public class MatchServiceImp implements MatchService
 {
     private final PlayerRepository playerRepository = new PlayerRepository();
@@ -80,11 +78,5 @@ public class MatchServiceImp implements MatchService
     @Override
     public Double calculateWinRate(Integer gamePlayed, Integer victory) {
         return gamePlayed == 0 ? 0.0 : (victory.doubleValue() / gamePlayed) * 100;
-    }
-
-    @Override
-    public void createMatches()
-    {
-
     }
 }

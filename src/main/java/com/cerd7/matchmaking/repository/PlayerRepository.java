@@ -75,7 +75,7 @@ public class PlayerRepository {
                 Player p1 = playersInQueue.remove(0);
 
                 Optional<Player> opponent = playersInQueue.stream()
-                        .filter(p -> p.getCountry().equals(p1.getCountry())) // Apenas do mesmo país
+                        .filter(p -> p.getCountry().equals(p1.getCountry()))
                         .findFirst();
 
                 if (opponent.isPresent()) {
@@ -98,6 +98,4 @@ public class PlayerRepository {
             throw new RuntimeException("Error reading JSON: " + e.getMessage(), e);
         }
     }
-
-
 }
