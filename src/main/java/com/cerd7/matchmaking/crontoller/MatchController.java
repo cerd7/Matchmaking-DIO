@@ -12,9 +12,9 @@ public class MatchController
 
     public void startInteraction()
     {
-        boolean running = true;
         Scanner sc = new Scanner(System.in);
 
+        System.out.print("\u001b[1;32m");
         System.out.println(
                 """
                         ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⠉⠐⠙⠦⠉⠀⠀⠠⢀⠀⠀⠠⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -43,58 +43,57 @@ public class MatchController
                         ⠋⠁⢰⡇⠀⠀⠀⠀⠈⣶⣶⠀⢤⠀⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⢠⠅⠀⢂⠀⠀⠀⠀⢀⠀⠀⢀⠀⠄⢰⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
                         ⠀⠀⢸⡇⠀⠀⠀⠀⠀⣿⣿⠀⢸⣠⣿⣿⣿⣿⡀⠀⠂⠀⠀⠂⠁⠀⠀⠀⠀⠀⠀⠀⠂⠈⠀⢸⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿"""
         );
-        System.out.println(
-                    """
-                    -----------------------------------------   \s
-                    - *Welcome to *C-E-R-D* system matches* -
-                    -----------------------------------------
-                   \s"""
-            );
         do
         {
             System.out.println(
+                    """       
+                     ==== Welcome to the Matchmaking App ====
                     """
-                     ---------------------------------------
-                     || *Set your preferred option below* ||
-                     ---------------------------------------
+            );
+            System.out.println(
+                    """
+                      --------------------------------------
+                     |    Welcome to the Matchmaking App    |
+                     |  ---------------------------------   |
+                     |   *Set your preferred option below*  |
+                      --------------------------------------
                     """
             );
 
             System.out.println(
                     """
-                      ---->OPTIONS:
-                      _____________________________________________________
-                      |1 - To create a new file to store players.
-                      ------------------------------------------------------
-                      |2 - To start generating a match with existing players.
-                      ------------------------------------------------------
-                      |3 - To see all the existing players in the bank.
-                      ------------------------------------------------------
-                      |4 - To add the same player.
-                      ------------------------------------------------------
+                                            OPTIONS:
+                     _______________________________________________________
+                     |1 - To create a new file to store players.            |
+                     |______________________________________________________|
+                     |2 - To start generating a match with existing players.|
+                     |______________________________________________________|
+                     |3 - To see all the existing players in the bank.      |
+                     |______________________________________________________|
+                     |4 - To add the same player.                           |
+                     |______________________________________________________|
                     """
             );
-            int input = sc.nextInt();
+                int input = sc.nextInt();
 
-            switch (input)
-            {
-                case 1:
-
-                    break;
-                case 2:
-
-                    break;
-                case 3:
-
-                    break;
-                case 4:
-
-                    break;
-                default:
-
-                    break;
+                switch (input) {
+                    case 1:
+                        System.out.println("New file created.");
+                        return;
+                    case 2:
+                        playerRepository.createMatches();
+                        break;
+                    case 3:
+                        playerRepository.readPlayers();
+                        break;
+                    case 4:
+                        System.out.println("New player added.");
+                        break;
+                    default:
+                        System.out.println("Invalid option.");
+                        break;
             }
-        }while(running);
+        }while(true);
     }
 
 
