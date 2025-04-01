@@ -9,11 +9,10 @@ public class MatchController
 {
     private final PlayerRepository playerRepository =  new PlayerRepository();
     private final MatchServiceImp matchServiceIMP = new MatchServiceImp();
+    private Scanner sc = new Scanner(System.in);
 
-    public void startInteraction()
-    {
-        Scanner sc = new Scanner(System.in);
-
+    public void startInteraction() {
+        int input;
         System.out.print("\u001b[1;32m");
         System.out.println(
                 """
@@ -43,73 +42,70 @@ public class MatchController
                         ⠋⠁⢰⡇⠀⠀⠀⠀⠈⣶⣶⠀⢤⠀⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⢠⠅⠀⢂⠀⠀⠀⠀⢀⠀⠀⢀⠀⠄⢰⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
                         ⠀⠀⢸⡇⠀⠀⠀⠀⠀⣿⣿⠀⢸⣠⣿⣿⣿⣿⡀⠀⠂⠀⠀⠂⠁⠀⠀⠀⠀⠀⠀⠀⠂⠈⠀⢸⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿"""
         );
-        do
-        {
+        System.out.println(
+                """
+                        \s
+                                     \s
+                                      ==== Matchmaking System ====
+                        \s"""
+        );
+
+       // boolean isRunning = true;
+        do {
             System.out.println(
-                    """       
-                     ==== Welcome to the Matchmaking App ====
                     """
-            );
-            System.out.println(
-                    """
-                      --------------------------------------
-                     |    Welcome to the Matchmaking App    |
-                     |  ---------------------------------   |
-                     |   *Set your preferred option below*  |
-                      --------------------------------------
-                    """
+                                                    OPTIONS:
+                             _______________________________________________________
+                             |1. To create a new file to store players.             |
+                             |______________________________________________________|
+                             |2. To start generating a match with existing players. |
+                             |______________________________________________________|
+                             |3. To see all the existing players in the bank.       |
+                             |______________________________________________________|
+                             |4. To add the same player.                            |
+                             |______________________________________________________|
+                            """
             );
 
-            System.out.println(
-                    """
-                                            OPTIONS:
-                     _______________________________________________________
-                     |1 - To create a new file to store players.            |
-                     |______________________________________________________|
-                     |2 - To start generating a match with existing players.|
-                     |______________________________________________________|
-                     |3 - To see all the existing players in the bank.      |
-                     |______________________________________________________|
-                     |4 - To add the same player.                           |
-                     |______________________________________________________|
-                    """
-            );
-                int input = sc.nextInt();
+            System.out.print("Select an option: ");
+            input = sc.nextInt();
 
-                switch (input) {
-                    case 1:
-                        System.out.println("New file created.");
-                        return;
-                    case 2:
-                        playerRepository.createMatches();
-                        break;
-                    case 3:
-                        playerRepository.readPlayers();
-                        break;
-                    case 4:
-                        System.out.println("New player added.");
-                        break;
-                    default:
-                        System.out.println("Invalid option.");
-                        break;
+            switch (input) {
+                case 1:
+                    createPayer();
+                    return;
+                case 2:
+                    playerRepository.createMatches();
+                    break;
+                case 3:
+                    playerRepository.readPlayers();
+                    break;
+                case 4:
+                    System.out.println("New player added.");
+                    break;
+                default:
+                    System.out.println("Invalid option.");
+                    break;
             }
-        }while(true);
+        } while(input >= 5);
+
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-    private void createPayer(String name, String country, boolean inQueue, Integer gamePlayed, Integer victory)
+    private void createPayer()
     {
+        System.out.println("Welcome on space for create a new player. Let´s go!");
+        System.out.print("Set the name of the player: ");
+        String name = sc.next();
+        System.out.print("Set the country of the player: ");
+        String country = sc.next();
+        System.out.print("You player is in queue? (Y - to yes/ N - to false): ");
+        boolean inQueue = sc.next().equalsIgnoreCase("Y");
+        System.out.print("Set the number of games played: ");
+        Integer gamePlayed = sc.nextInt();
+        System.out.print("Set the number of victories: ");
+        Integer victory = sc.nextInt();
+
         matchServiceIMP.createPlayer(name,country,inQueue, gamePlayed, victory);
     }
 }
