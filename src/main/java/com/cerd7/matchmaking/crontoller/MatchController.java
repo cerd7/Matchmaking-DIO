@@ -9,7 +9,7 @@ public class MatchController
 {
     private final PlayerRepository playerRepository =  new PlayerRepository();
     private final MatchServiceImp matchServiceIMP = new MatchServiceImp();
-    private Scanner sc = new Scanner(System.in);
+    private final Scanner sc = new Scanner(System.in);
 
     public void startInteraction() {
         int input;
@@ -56,14 +56,10 @@ public class MatchController
                     """
                                                     OPTIONS:
                              _______________________________________________________
-                             |1. To create a new file to store players.             |
-                             |______________________________________________________|
-                             |2. To start generating a match with existing players. |
-                             |______________________________________________________|
-                             |3. To see all the existing players in the bank.       |
-                             |______________________________________________________|
-                             |4. To add the same player.                            |
-                             |______________________________________________________|
+                             1. To create a new file to store players.             \s
+                             2. To start generating a match with existing players. \s
+                             3. To see all the existing players in the bank.       \s
+                             4. To add the same player.                            \s
                             """
             );
 
@@ -88,19 +84,32 @@ public class MatchController
                     break;
             }
         } while(input >= 5);
-
     }
 
 
-    private void createPayer()
-    {
+    private void createPayer() {
+        boolean inQueue = false;
         System.out.println("Welcome on space for create a new player. Let´s go!");
         System.out.print("Set the name of the player: ");
         String name = sc.next();
         System.out.print("Set the country of the player: ");
         String country = sc.next();
-        System.out.print("You player is in queue? (Y - to yes/ N - to false): ");
-        boolean inQueue = sc.next().equalsIgnoreCase("Y");
+
+        for(int i = 0; i < 1000; i++)
+        {
+            System.out.print("You player is in queue? (Y/N): ");
+            String inQueueValue = sc.next();
+            if (inQueueValue.equals("Y")) {
+                inQueue = true;
+                break;
+            } else if (inQueueValue.equals("N")) {
+                break;
+            } else {
+                System.out.println("Invalid option. Please, try again.");
+                i++;
+            }
+        }
+
         System.out.print("Set the number of games played: ");
         Integer gamePlayed = sc.nextInt();
         System.out.print("Set the number of victories: ");
