@@ -32,7 +32,7 @@ public class PlayerRepository {
         try
         {
             lookingPlayers = objectMapper.readValue(new File(String.valueOf(file)), objectMapper.getTypeFactory().constructCollectionType(List.class, Player.class));
-            objectMapper.writeValue(file, "");
+            objectMapper.writeValue(file, null);
             System.out.println("FILE CLEARED! ˗ˏˋ ✸ ˎˊ˗");
         } catch (IOException e) {
             throw new RuntimeException("Error reading JSON: " + e.getMessage(), e);

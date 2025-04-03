@@ -91,16 +91,17 @@ public class MatchController
     {
         String country = "";
         boolean inQueue = false;
-        Integer gamePlayed = 0;
-        Integer victory = 0;
+        int gamePlayed = 0;
+        int victory = 0;
 
         System.out.print("\u001b[1;37m");
         System.out.println("Welcome on space for create a new player. Let´s go!");
         System.out.print("Set the name of the player: ");
         String name = sc.next();
-        System.out.println("""
+        System.out.println();
+        System.out.print("""
                         Now you need select which country you player is... \s
-                        --- See the options -> BRA, USA or RUS.
+                        See the options -> BRA, USA or RUS.
                         """);
         for(int i = 0; i < 1000; i++)
         {
@@ -116,7 +117,7 @@ public class MatchController
                 i++;
             }
         }
-
+        System.out.println();
         for(int i = 0; i < 1000; i++)
         {
             System.out.print("You player is in queue? (Y/N): ");
@@ -131,18 +132,38 @@ public class MatchController
                 i++;
             }
         }
+        System.out.println();
 
-        System.out.print("Set the number of games played: ");
-        gamePlayed = sc.nextInt();
+        for(int i = 0; i < 1000; i++)
+        {
+            System.out.print("Set the number of games played: ");
+            gamePlayed = sc.nextInt();
+            if(gamePlayed < 0)
+            {
+                System.out.print("""
+                        The number of matches played cannot be less than zero!
+                        Please, try again...
+                        """);
+                i++;
+            }
+        }
         for(int i = 0; i < 1000; i++)
         {
             System.out.print("Set the number of victories: ");
             victory = sc.nextInt();
             if(gamePlayed < victory)
             {
-                System.out.println("""
+                System.out.print("""
                         The number victory of wins cannot be greater than the number of matches played!
-                        --- Please, try again...
+                        Please, try again...
+                        """);
+                i++;
+            }
+            else if(victory < 0)
+            {
+                System.out.print("""
+                        The number of wins must not be below zero!
+                        Please, try again...
                         """);
                 i++;
             }
@@ -164,7 +185,21 @@ public class MatchController
             String cache = sc.next();
             for(int i = 0; i < 1000; i++) {
                 if (cache.equals("Y")) {
-                    interactionCreatePlayer();
+                    for(int j = 0; j < 1000; i++ )
+                    {
+                        interactionCreatePlayer();
+                        System.out.println("Do you want to add more players? (Y/N)");
+                        cache = sc.next();
+                        if (cache.equals("Y")) {
+                            break;
+                        } else if (cache.equals("N")) {
+                            isRunning = false;
+                            break;
+                        } else {
+                            System.out.println("Invalid option. Please, try again.");
+                            j++;
+                        }
+                    }
                     break;
                 }
                 else if(cache.equals("N"))

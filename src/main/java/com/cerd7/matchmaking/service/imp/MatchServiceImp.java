@@ -43,16 +43,25 @@ public class MatchServiceImp implements MatchService
     @Override
     public String calculateElo(Integer gamePlayed, Integer victory)
     {
-        String elo;
-
         System.out.println("victory: " + victory);
         System.out.println("gamePlayed: " + gamePlayed);
 
-        int defeat = gamePlayed - victory;
+        String elo;
+        int scorePlayer;
+        int defeat = 19;
+        int multiplierDefeat = gamePlayed - victory;
 
-        System.out.println("Defeat: " + defeat);
-        int scorePlayer = ((defeat * 2) - (victory * 2));
+        int win = 23;
+        int multiplierVictory = victory;
 
+        if(gamePlayed.equals(victory))
+        {
+            scorePlayer = (win * multiplierVictory);
+        }
+        else
+        {
+            scorePlayer = ((win * multiplierVictory) - (defeat * multiplierDefeat));
+        }
         System.out.println("Score: " + scorePlayer);
 
         if(scorePlayer < 0)
