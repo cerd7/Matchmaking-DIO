@@ -27,6 +27,18 @@ public class PlayerRepository {
         }
     }
 
+    public void clearFile()
+    {
+        try
+        {
+            lookingPlayers = objectMapper.readValue(new File(String.valueOf(file)), objectMapper.getTypeFactory().constructCollectionType(List.class, Player.class));
+            objectMapper.writeValue(file, "");
+            System.out.println("FILE CLEARED! ˗ˏˋ ✸ ˎˊ˗");
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading JSON: " + e.getMessage(), e);
+        }
+    }
+
     public void createPlayers(Player player) {
         try {
             if (file.exists() && file.length() > 0) {
@@ -43,8 +55,8 @@ public class PlayerRepository {
                 objectMapper.writeValue(file, lookingPlayers);
                 System.out.println("New file created and user added.");
             }
-        } catch (Exception e) {
-            System.out.println("player don't add " + e.getMessage());
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading JSON: " + e.getMessage(), e);
         }
     }
 

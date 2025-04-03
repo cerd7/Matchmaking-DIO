@@ -30,6 +30,17 @@ public class MatchServiceImp implements MatchService
     }
 
     @Override
+    public void clearFile()
+    {
+        System.out.print("\u001b[1;31m");
+        System.out.println("Cool!! Let's clear up the file... (¬‿¬)");
+        System.out.print("\u001b[0m");
+        playerRepository.clearFile();
+
+        System.out.println("Now let's start adding your players!");
+    }
+
+    @Override
     public String calculateElo(Integer gamePlayed, Integer victory)
     {
         String elo;
@@ -40,7 +51,7 @@ public class MatchServiceImp implements MatchService
         int defeat = gamePlayed - victory;
 
         System.out.println("Defeat: " + defeat);
-        int scorePlayer = ((victory * 2) - (defeat * 2));
+        int scorePlayer = ((defeat * 2) - (victory * 2));
 
         System.out.println("Score: " + scorePlayer);
 
