@@ -17,9 +17,14 @@ public class PlayerRepository {
     public void readPlayers() {
         try {
             lookingPlayers = objectMapper.readValue(new File(String.valueOf(file)), objectMapper.getTypeFactory().constructCollectionType(List.class, Player.class));
+            System.out.print("""
+                            --------------------
+                            |   PLAYER | ELO   |
+                            --------------------
+                            """);
             for (Player player : lookingPlayers) {
                 if (player.getNickname() != null) {
-                    System.out.println("Player name is: " + player.getNickname() + "elo: " + player.getPlayerStatus().getElo());
+                    System.out.println(player.getNickname() + "  " + player.getPlayerStatus().getElo());
                 }
             }
         } catch (Exception e) {
@@ -27,13 +32,20 @@ public class PlayerRepository {
         }
     }
 
-    public void clearFile()
+    public boolean clearFile()
     {
         try
         {
-            lookingPlayers = objectMapper.readValue(new File(String.valueOf(file)), objectMapper.getTypeFactory().constructCollectionType(List.class, Player.class));
-            objectMapper.writeValue(file, null);
-            System.out.println("FILE CLEARED! ˗ˏˋ ✸ ˎˊ˗");
+            if(file.length() > 0)
+            {
+                lookingPlayers = objectMapper.readValue(new File(String.valueOf(file)), objectMapper.getTypeFactory().constructCollectionType(List.class, Player.class));
+                objectMapper.writeValue(file, "");
+                System.out.println("FILE CLEARED! ˗ˏˋ ✸ ˎˊ˗");
+                return true;
+            }else {
+                System.out.println("FILE IS EMPTY!");
+                return false;
+            }
         } catch (IOException e) {
             throw new RuntimeException("Error reading JSON: " + e.getMessage(), e);
         }
@@ -69,7 +81,7 @@ public class PlayerRepository {
                     .filter(Player::getInQueue)
                     .collect(Collectors.toList());
 
-            System.out.println("Players in queue: " + playersInQueue.size());
+            System.out.println("PLAYERS IN QUEUE: " + playersInQueue.size());
 
             if (playersInQueue.isEmpty()) {
                 System.out.println("No players in queue. No matches created.");
@@ -83,7 +95,8 @@ public class PlayerRepository {
 
             List<List<Player>> matches = new ArrayList<>();
 
-            while (playersInQueue.size() >= 2) {
+            while (playersInQueue.size() >= 2)
+            {
                 Player p1 = playersInQueue.remove(0);
 
                 Optional<Player> opponent = playersInQueue.stream()
@@ -94,9 +107,11 @@ public class PlayerRepository {
                     Player p2 = opponent.get();
                     playersInQueue.remove(p2);
                     matches.add(Arrays.asList(p1, p2));
-                    System.out.println("Match created: " + p1.getNickname() + " -- Elo: " + p1.getPlayerStatus().getElo() +
-                            " vs " + p2.getNickname() + " -- Elo: " + p2.getPlayerStatus().getElo() +
-                            " (Country: " + p1.getCountry() + ")");
+                    System.out.print("""
+                                   Match created:\s
+                                   \s""");
+                    System.out.println("NICKNAME: " + p1.getNickname() + " | ELO: " + p1.getPlayerStatus().getElo() +
+                                " -X- " + "NICKNAME: " + p2.getNickname() + "| ELO: " + p2.getPlayerStatus().getElo());
                 } else {
                     System.out.println("No match found for: " + p1.getNickname() + " (Country: " + p1.getCountry() + ")");
                 }

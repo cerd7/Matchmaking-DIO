@@ -146,6 +146,9 @@ public class MatchController
                         """);
                 i++;
             }
+            else {
+                break;
+            }
         }
         for(int i = 0; i < 1000; i++)
         {
@@ -178,41 +181,43 @@ public class MatchController
 
     private void interactionClearFile()
     {
-        playerRepository.clearFile();
         boolean isRunning = true;
-        do {
-            System.out.println("Do you want to add new players to your archive?(Y/N)");
-            String cache = sc.next();
-            for(int i = 0; i < 1000; i++) {
-                if (cache.equals("Y")) {
-                    for(int j = 0; j < 1000; i++ )
-                    {
+        if(matchServiceIMP.clearFile())
+        {
+            matchServiceIMP.clearFile();
+            do {
+                for (int i = 0; i < 1000; i++) {
+                    System.out.println("Do you want to add new players to your archive?(Y/N)");
+                    String cacheD = sc.next();
+
+                    if (cacheD.equals("Y")) {
                         interactionCreatePlayer();
-                        System.out.println("Do you want to add more players? (Y/N)");
-                        cache = sc.next();
-                        if (cache.equals("Y")) {
-                            break;
-                        } else if (cache.equals("N")) {
-                            isRunning = false;
-                            break;
-                        } else {
-                            System.out.println("Invalid option. Please, try again.");
-                            j++;
+                        for (int j = 0; j < 1000; j++) {
+                            System.out.println("Do you want to add more players? (Y/N)");
+                            String cacheS = sc.next();
+
+                            if (cacheS.equals("Y")) {
+                                interactionCreatePlayer();
+                                j++;
+                            } else if (cacheS.equals("N")) {
+                                isRunning = false;
+                                break;
+                            } else {
+                                System.out.println("Invalid option. Please, try again.");
+                                j++;
+                            }
                         }
+                    } else if (cacheD.equals("N")) {
+                        isRunning = false;
+                        break;
+                    } else {
+                        System.out.println("Invalid option. Please, try again.");
+                        i++;
                     }
-                    break;
                 }
-                else if(cache.equals("N"))
-                {
-                    isRunning = false;
-                    break;
-                }
-                else
-                {
-                    System.out.println("Invalid option. Please, try again.");
-                    i++;
-                }
-            }
-        }while (isRunning);
+            } while (isRunning);
+        }else {
+            matchServiceIMP.clearFile();
+        }
     }
 }

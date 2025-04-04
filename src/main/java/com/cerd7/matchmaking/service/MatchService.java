@@ -4,7 +4,7 @@ public interface MatchService
 {
     void createPlayer(String name, String country, boolean inQueue, Integer gamePlayed, Integer victory);
 
-    void clearFile();
+    boolean clearFile();
 
     String calculateElo(Integer gamePlayed, Integer victory);
 
