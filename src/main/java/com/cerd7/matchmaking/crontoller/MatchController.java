@@ -11,7 +11,12 @@ public class MatchController
     private final MatchServiceImp matchServiceIMP = new MatchServiceImp();
     private final Scanner sc = new Scanner(System.in);
 
-    public void startInteraction() {
+    public MatchController()
+    {
+        startInteraction();
+    }
+
+    private void startInteraction() {
         int input;
         System.out.print("\u001b[1;32m");
         System.out.println(
@@ -51,16 +56,15 @@ public class MatchController
                         \s"""
         );
 
-       // boolean isRunning = true;
         do {
             System.out.println(
                     """
                                                     OPTIONS:
                              _______________________________________________________
-                             1. To create a new file to store players.             \s
+                             1. To clean up the file and add new players.          \s
                              2. To start generating a match with existing players. \s
-                             3. To see all the existing players in the bank.       \s
-                             4. To add the same player.                            \s
+                             3. To see all existing players.                       \s
+                             4. To add a new player.                               \s
                             """
             );
 
@@ -181,43 +185,34 @@ public class MatchController
 
     private void interactionClearFile()
     {
-        boolean isRunning = true;
-        if(matchServiceIMP.clearFile())
-        {
-            matchServiceIMP.clearFile();
-            do {
-                for (int i = 0; i < 1000; i++) {
-                    System.out.println("Do you want to add new players to your archive?(Y/N)");
-                    String cacheD = sc.next();
+        matchServiceIMP.clearFile();
+        for (int i = 0; i < 1000; i++) {
+            System.out.println("Do you want to add new players to your archive?(Y/N)");
+            String cacheD = sc.next();
 
-                    if (cacheD.equals("Y")) {
+            if (cacheD.equals("Y")) {
+                interactionCreatePlayer();
+                for (int j = 0; j < 1000; j++) {
+                    System.out.println("Do you want to add more players? (Y/N)");
+                    String cacheS = sc.next();
+
+                    if (cacheS.equals("Y")) {
                         interactionCreatePlayer();
-                        for (int j = 0; j < 1000; j++) {
-                            System.out.println("Do you want to add more players? (Y/N)");
-                            String cacheS = sc.next();
-
-                            if (cacheS.equals("Y")) {
-                                interactionCreatePlayer();
-                                j++;
-                            } else if (cacheS.equals("N")) {
-                                isRunning = false;
-                                break;
-                            } else {
-                                System.out.println("Invalid option. Please, try again.");
-                                j++;
-                            }
-                        }
-                    } else if (cacheD.equals("N")) {
-                        isRunning = false;
+                        j++;
+                    } else if (cacheS.equals("N")) {
                         break;
                     } else {
                         System.out.println("Invalid option. Please, try again.");
-                        i++;
+                        j++;
                     }
                 }
-            } while (isRunning);
-        }else {
-            matchServiceIMP.clearFile();
+                break;
+            } else if (cacheD.equals("N")) {
+                break;
+            } else {
+                System.out.println("Invalid option. Please, try again.");
+                i++;
+            }
         }
     }
 }

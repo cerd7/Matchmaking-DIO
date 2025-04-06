@@ -1,0 +1,101 @@
+[
+  {
+    "name": "Fluffy",
+    "country": "USA",
+    "inQueue": true,
+    "statusPlayer": {
+      "winRate": 85.0,
+      "qtyGamePlayed": 20,
+      "victory": 17,
+      "elo": "Legendary"
+    }
+  },
+  {
+    "name": "KnightVanLight",
+    "country": "USA",
+    "inQueue": true,
+    "statusPlayer": {
+      "winRate": 85.0,
+      "qtyGamePlayed": 20,
+      "victory": 17,
+      "elo": "Legendary"
+    }
+  },
+  {
+    "name": "Hou",
+    "country": "USA",
+    "inQueue": true,
+    "statusPlayer": {
+      "winRate": 85.0,
+      "qtyGamePlayed": 20,
+      "victory": 17,
+      "elo": "Legendary"
+    }
+  },
+  {
+    "name": "CavaleiroDaLuzz",
+    "country": "USA",
+    "inQueue": true,
+    "statusPlayer": {
+      "winRate": 85.0,
+      "qtyGamePlayed": 20,
+      "victory": 17,
+      "elo": "Iron"
+    }
+  },
+  {
+    "name": "TEEMO",
+    "country": "USA",
+    "inQueue": true,
+    "statusPlayer": {
+      "winRate": 85.0,
+      "qtyGamePlayed": 20,
+      "victory": 17,
+      "elo": "Iron"
+    }
+  },
+  {
+    "name": "cerdDEV",
+    "country": "USA",
+    "inQueue": true,
+    "statusPlayer": {
+      "winRate": 85.0,
+      "qtyGamePlayed": 20,
+      "victory": 17,
+      "elo": "Gold"
+    }
+  },
+  {
+    "name": "cerdDEV",
+    "country": "BRA",
+    "inQueue": true,
+    "statusPlayer": {
+      "winRate": 85.0,
+      "qtyGamePlayed": 20,
+      "victory": 17,
+      "elo": "Gold"
+    }
+  },
+  {
+    "name": "cerdDVD",
+    "country": "USA",
+    "inQueue": true,
+    "statusPlayer": {
+      "winRate": 85.0,
+      "qtyGamePlayed": 20,
+      "victory": 17,
+      "elo": "Gold"
+    }
+  },
+  {
+    "name": "Bruninho",
+    "country": "RUS",
+    "inQueue": true,
+    "statusPlayer": {
+      "winRate": 85.0,
+      "qtyGamePlayed": 20,
+      "victory": 17,
+      "elo": "Gold"
+    }
+  }
+]

@@ -10,8 +10,7 @@ public class MatchServiceImp implements MatchService
     private final PlayerRepository playerRepository = new PlayerRepository();
 
     @Override
-    public void createPlayer(String name, String country, boolean inQueue, Integer gamePlayed, Integer victory)
-    {
+    public void createPlayer(String name, String country, boolean inQueue, Integer gamePlayed, Integer victory) {
         Player player = new Player();
         PlayerStatus playerStatus = new PlayerStatus();
 
@@ -30,23 +29,16 @@ public class MatchServiceImp implements MatchService
     }
 
     @Override
-    public boolean clearFile()
-    {
+    public void clearFile() {
         System.out.print("\u001b[1;31m");
         System.out.println("Cool!! Let's clear up the file... (¬‿¬)");
         System.out.print("\u001b[0m");
         playerRepository.clearFile();
-
-        if(playerRepository.clearFile())
-        {
-            System.out.println("Now let's start adding your players!");
-        }
-        return playerRepository.clearFile();
+        System.out.println("Now let's start adding your players!");
     }
 
     @Override
-    public String calculateElo(Integer gamePlayed, Integer victory)
-    {
+    public String calculateElo(Integer gamePlayed, Integer victory) {
         System.out.println("victory: " + victory);
         System.out.println("gamePlayed: " + gamePlayed);
 

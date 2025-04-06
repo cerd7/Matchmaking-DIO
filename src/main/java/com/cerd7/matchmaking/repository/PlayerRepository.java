@@ -22,7 +22,8 @@ public class PlayerRepository {
                             |   PLAYER | ELO   |
                             --------------------
                             """);
-            for (Player player : lookingPlayers) {
+            for (Player player : lookingPlayers)
+            {
                 if (player.getNickname() != null) {
                     System.out.println(player.getNickname() + "  " + player.getPlayerStatus().getElo());
                 }
@@ -32,19 +33,15 @@ public class PlayerRepository {
         }
     }
 
-    public boolean clearFile()
-    {
+    public void clearFile() {
         try
         {
             if(file.length() > 0)
             {
-                lookingPlayers = objectMapper.readValue(new File(String.valueOf(file)), objectMapper.getTypeFactory().constructCollectionType(List.class, Player.class));
-                objectMapper.writeValue(file, "");
+                objectMapper.writeValue(new File(String.valueOf(file)), Collections.emptyList());
                 System.out.println("FILE CLEARED! ˗ˏˋ ✸ ˎˊ˗");
-                return true;
             }else {
                 System.out.println("FILE IS EMPTY!");
-                return false;
             }
         } catch (IOException e) {
             throw new RuntimeException("Error reading JSON: " + e.getMessage(), e);
@@ -78,8 +75,7 @@ public class PlayerRepository {
                     .constructCollectionType(List.class, Player.class));
 
             List<Player> playersInQueue = lookingPlayers.stream()
-                    .filter(Player::getInQueue)
-                    .collect(Collectors.toList());
+                    .filter(Player::getInQueue).sorted(Comparator.comparing(Player::getCountry)).collect(Collectors.toList());
 
             System.out.println("PLAYERS IN QUEUE: " + playersInQueue.size());
 
@@ -88,39 +84,64 @@ public class PlayerRepository {
                 return;
             }
 
-            playersInQueue.sort(
-                    Comparator.comparing(Player::getCountry)
-                            .thenComparing((Player p) -> p.getPlayerStatus().getWinRate(), Comparator.reverseOrder())
-            );
-
             List<List<Player>> matches = new ArrayList<>();
+            List<Player> unmatched = new ArrayList<>();
+            Set<String> matchedPlayerNicknames = new HashSet<>();
 
             while (playersInQueue.size() >= 2)
             {
                 Player p1 = playersInQueue.remove(0);
 
-                Optional<Player> opponent = playersInQueue.stream()
-                        .filter(p -> p.getCountry().equals(p1.getCountry()))
-                        .findFirst();
+                if (matchedPlayerNicknames.contains(p1.getNickname()))
+                {
+                    System.out.println("\nSkipping player " + p1.getNickname() + " - already matched in a game");
+                    continue;
+                }
 
-                if (opponent.isPresent()) {
-                    Player p2 = opponent.get();
+                List<Player> opponent = new ArrayList<>(playersInQueue.stream()
+                        .filter(p -> p.getCountry().equals(p1.getCountry()) && p.getPlayerStatus().getElo().equals(p1.getPlayerStatus().getElo()))
+                        .toList());
+
+                if (!opponent.isEmpty())
+                {
+                    Player p2 = opponent.get(0);
                     playersInQueue.remove(p2);
+
+                    matchedPlayerNicknames.add(p1.getNickname());
+                    matchedPlayerNicknames.add(p2.getNickname());
+
+                    System.out.println("match exist");
                     matches.add(Arrays.asList(p1, p2));
                     System.out.print("""
-                                   Match created:\s
-                                   \s""");
+                            \nMatch created:\s
+                            \s""");
                     System.out.println("NICKNAME: " + p1.getNickname() + " | ELO: " + p1.getPlayerStatus().getElo() +
-                                " -X- " + "NICKNAME: " + p2.getNickname() + "| ELO: " + p2.getPlayerStatus().getElo());
-                } else {
-                    System.out.println("No match found for: " + p1.getNickname() + " (Country: " + p1.getCountry() + ")");
+                            " -X- " + "NICKNAME: " + p2.getNickname() + " | ELO: " + p2.getPlayerStatus().getElo());
+                }
+                else
+                {
+                    unmatched.add(p1);
+                }
+
+                    //-->> Logic to update the player's paired status to false
+                    /*for (Player p : lookingPlayers) {
+                        if (unmatched.contains(p)) {
+                            p.setInQueue(true);
+                        } else if (matches.stream().flatMap(List::stream).anyMatch(matchedPlayer ->
+                                matchedPlayer.getNickname().equals(p.getNickname()))) {
+                            p.setInQueue(false);
+                        }
+                    }
+                    objectMapper.writeValue(file, lookingPlayers);*/
+            }
+            if (!unmatched.isEmpty()) {
+                System.out.println("\nPlayers returned to queue without matches: " + unmatched.size());
+                for (Player p : unmatched) {
+                    System.out.println("-> " + p.getNickname() + " (Country: " + p.getCountry() +
+                            " | Elo: " + p.getPlayerStatus().getElo() + ")");
                 }
             }
-
-            if (!playersInQueue.isEmpty()) {
-                System.out.println("Player not matched: " + playersInQueue.get(0).getNickname());
-            }
-
+            System.out.println("\nTotal matches created: " + matches.size());
         } catch (IOException e) {
             throw new RuntimeException("Error reading JSON: " + e.getMessage(), e);
         }
