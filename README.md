@@ -72,7 +72,7 @@ O projeto está organizado da seguinte forma:
 +------------------------+                         |    |
 |   PlayerRepository     |   <---------------------+    |
 +------------------------+
-| +createPlayers()       `|
+| +createPlayers()       |
 | +readPlayers()         |
 | +clearFile()           |
 | +createMatches()       |
