@@ -37,6 +37,13 @@ public class MatchServiceImp implements MatchService
         System.out.println("Now let's start adding your players!");
     }
 
+    public void readFileContent()
+    {
+        System.out.print("So you want to see all the players. Let's go...");
+        System.out.print("So you want to see all the players. Let's go...");
+            playerRepository.readPlayers(1);
+    }
+
     @Override
     public String calculateElo(Integer gamePlayed, Integer victory) {
         System.out.println("victory: " + victory);

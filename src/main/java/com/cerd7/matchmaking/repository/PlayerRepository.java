@@ -2,8 +2,6 @@ package com.cerd7.matchmaking.repository;
 
 import com.cerd7.matchmaking.models.Player;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
@@ -14,14 +12,31 @@ public class PlayerRepository {
     private List<Player> lookingPlayers;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public void readPlayers() {
+    public void readPlayers(int input) {
         try {
             lookingPlayers = objectMapper.readValue(new File(String.valueOf(file)), objectMapper.getTypeFactory().constructCollectionType(List.class, Player.class));
-            System.out.print("""
-                            --------------------
-                            |   PLAYER | ELO   |
-                            --------------------
-                            """);
+
+            switch (input)
+            {
+                case 1:
+                {
+
+                    List<Player> player = new ArrayList<>(lookingPlayers.stream()
+                            .filter(pBRA -> pBRA.getPlayerStatus().getElo().equals("BRA"))
+                            .toList());
+                    Player p = player.remove(0);
+                    System.out.print("Players BRA:");
+                    System.out.println(p.getNickname() + p.getCountry());
+
+                }
+                    break;
+                case 2:///ver por pais
+                    break;
+                case 3:///ver por elo
+                    break;
+                default:///infos erradas
+                    break;
+            }
             for (Player player : lookingPlayers)
             {
                 if (player.getNickname() != null) {

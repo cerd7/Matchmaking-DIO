@@ -2,7 +2,6 @@ package com.cerd7.matchmaking.crontoller;
 
 import com.cerd7.matchmaking.repository.PlayerRepository;
 import com.cerd7.matchmaking.service.imp.MatchServiceImp;
-
 import java.util.Scanner;
 
 public class MatchController
@@ -79,7 +78,7 @@ public class MatchController
                     playerRepository.createMatches();
                     break;
                 case 3:
-                    playerRepository.readPlayers();
+                    matchServiceIMP.readFileContent();
                     break;
                 case 4:
                     interactionCreatePlayer();
