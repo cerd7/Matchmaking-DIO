@@ -43,10 +43,50 @@ Este projeto demonstra, de forma simplificada, o funcionamento de uma fila de ma
 
 O projeto está organizado da seguinte forma:
 
-- `src/main/java/com/dio/matchmaking/`
-  - `Player.java`: Classe que representa um jogador, contendo ID e pontuação.
-  - `MatchmakingQueue.java`: Classe que gerencia a fila de matchmaking, adicionando e emparelhando jogadores com base em suas pontuações.
-  - `Main.java`: Classe principal que demonstra o funcionamento do sistema de matchmaking.
++-------------------+
+|        Main       |
++-------------------+
+          |
+          v
++------------------------+
+|   MatchController      | <----------------------------+
++------------------------+                              |
+| - service: MatchServiceImpl                           |
+| +startInteraction()                                   |
+| +interactionCreatePlayer()                            |
+| +interactionClearFile()                               |
++------------------------+                              |
+          |                                             |
+          v                                             |
++------------------------+                              |
+|   MatchServiceImpl      |  <---------------------+    |
++------------------------+  |  usa                 |    |
+| - repository: PlayerRepository                   |    |
+| +createPlayer()                                  |    |
+| +clearFile()                                     |    |
+| +calculateElo()                                  |    |
+| +calculateWinRate()                              |    |
++------------------------+                         |    |
+          |                                        |    |
+          v                                        |    |
++------------------------+                         |    |
+|   PlayerRepository     |   <---------------------+    |
++------------------------+
+| +createPlayers()       `|
+| +readPlayers()         |
+| +clearFile()           |
+| +createMatches()       |
++------------------------+
+
+Entidades:
++----------------+      +----------------------+
+|    Player      |<>----|    PlayerStatus      |
++----------------+      +----------------------+
+| - nickname     |      | - winRate            |
+| - country      |      | - qtyGamePlayed      |
+| - inQueue      |      | - victory            |
+| - playerStatus |      | - elo                |
++----------------+      +----------------------+
 
 ## Contribuição
 
