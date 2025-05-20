@@ -2,7 +2,6 @@ package com.cerd7.matchmaking.contoller;
 
 import com.cerd7.matchmaking.repository.PlayerRepository;
 import com.cerd7.matchmaking.service.imp.MatchServiceImp;
-
 import java.util.Scanner;
 
 public class MatchController
@@ -65,7 +64,7 @@ public class MatchController
                              2. To start generating a match with existing players. \s
                              3. To see all existing players.                       \s
                              4. To add a new player. 
-                             0. Exot.                              \s
+                             0. Exit.                              \s
                             """
             );
 
@@ -80,7 +79,7 @@ public class MatchController
                     playerRepository.createMatches();
                     break;
                 case 3:
-                    playerRepository.readPlayers();
+                    matchServiceIMP.readFileContent();
                     break;
                 case 4:
                     interactionCreatePlayer();

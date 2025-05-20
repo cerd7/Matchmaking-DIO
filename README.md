@@ -129,6 +129,58 @@ MatchController
    java -cp src/main/java com.dio.matchmaking.Main
    ```
 
+<<<<<<< HEAD
+=======
+## Estrutura do Projeto
+
+O projeto está organizado da seguinte forma:
+
++-------------------+
+|        Main       |
++-------------------+
+          |
+          v
++------------------------+
+|   MatchController      | <----------------------------+
++------------------------+                              |
+| - service: MatchServiceImpl                           |
+| +startInteraction()                                   |
+| +interactionCreatePlayer()                            |
+| +interactionClearFile()                               |
++------------------------+                              |
+          |                                             |
+          v                                             |
++------------------------+                              |
+|   MatchServiceImpl      |  <---------------------+    |
++------------------------+  |  usa                 |    |
+| - repository: PlayerRepository                   |    |
+| +createPlayer()                                  |    |
+| +clearFile()                                     |    |
+| +calculateElo()                                  |    |
+| +calculateWinRate()                              |    |
++------------------------+                         |    |
+          |                                        |    |
+          v                                        |    |
++------------------------+                         |    |
+|   PlayerRepository     |   <---------------------+    |
++------------------------+
+| +createPlayers()       |
+| +readPlayers()         |
+| +clearFile()           |
+| +createMatches()       |
++------------------------+
+
+Entidades:
++----------------+      +----------------------+
+|    Player      |<>----|    PlayerStatus      |
++----------------+      +----------------------+
+| - nickname     |      | - winRate            |
+| - country      |      | - qtyGamePlayed      |
+| - inQueue      |      | - victory            |
+| - playerStatus |      | - elo                |
++----------------+      +----------------------+
+
+>>>>>>> 3b6d8d7290a9452aefb3fdfd2285900f97f6ec32
 ## Contribuição
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
