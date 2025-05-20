@@ -1,4 +1,4 @@
-package com.cerd7.matchmaking.crontoller;
+package com.cerd7.matchmaking.contoller;
 
 import com.cerd7.matchmaking.repository.PlayerRepository;
 import com.cerd7.matchmaking.service.imp.MatchServiceImp;
@@ -64,12 +64,13 @@ public class MatchController
                              1. To clean up the file and add new players.          \s
                              2. To start generating a match with existing players. \s
                              3. To see all existing players.                       \s
-                             4. To add a new player.                               \s
+                             4. To add a new player. 
+                             0. Exot.                              \s
                             """
             );
 
             System.out.print("Select an option: ");
-            input = sc.nextInt();
+            input = sc.nextInt();sc.nextLine();
 
             switch (input) {
                 case 1:
@@ -84,11 +85,15 @@ public class MatchController
                 case 4:
                     interactionCreatePlayer();
                     break;
+                case 0:
+                    System.out.println("Closing...");
+                    System.exit(0);
+                    break;
                 default:
                     System.out.println("Invalid option.");
                     break;
             }
-        } while(input >= 5);
+        } while(input != 0);
     }
 
     private void interactionCreatePlayer()
@@ -99,33 +104,35 @@ public class MatchController
         int victory = 0;
 
         System.out.print("\u001b[1;37m");
-        System.out.println("Welcome on space for create a new player. Let´s go!");
+        System.out.println("Welcome on space for create a new player. Let's go!");
         System.out.print("Set the name of the player: ");
-        String name = sc.next();
+        String name = sc.nextLine();
         System.out.println();
         System.out.print("""
                         Now you need select which country you player is... \s
                         See the options -> BRA, USA or RUS.
                         """);
-        for(int i = 0; i < 1000; i++)
+        
+        while(true)
         {
             System.out.print("Set the country player:");
-            country = sc.next();
-            if(country.equals("BRA") || country.equals("USA") || country.equals("RUS"))
+            country = sc.nextLine();
+            if(country.equalsIgnoreCase("BRA") || country.equalsIgnoreCase("USA") || country.equalsIgnoreCase("RUS"))
             {
                 break;
             }
             else
             {
                 System.out.println("Invalid option. Please, try again.");
-                i++;
             }
         }
+
         System.out.println();
-        for(int i = 0; i < 1000; i++)
+
+        while(true)
         {
-            System.out.print("You player is in queue? (Y/N): ");
-            String inQueueValue = sc.next();
+            System.out.print("Is your player in queue? (Y/N): ");
+            String inQueueValue = sc.nextLine();
             if (inQueueValue.equals("Y")) {
                 inQueue = true;
                 break;
@@ -133,38 +140,37 @@ public class MatchController
                 break;
             } else {
                 System.out.println("Invalid option. Please, try again.");
-                i++;
             }
         }
+
         System.out.println();
 
-        for(int i = 0; i < 1000; i++)
+        while(true)
         {
             System.out.print("Set the number of games played: ");
-            gamePlayed = sc.nextInt();
+            gamePlayed = sc.nextInt();sc.nextLine();
             if(gamePlayed < 0)
             {
                 System.out.print("""
                         The number of matches played cannot be less than zero!
                         Please, try again...
                         """);
-                i++;
             }
             else {
                 break;
             }
         }
-        for(int i = 0; i < 1000; i++)
+
+        while(true)
         {
             System.out.print("Set the number of victories: ");
-            victory = sc.nextInt();
+            victory = sc.nextInt();sc.nextLine();
             if(gamePlayed < victory)
             {
                 System.out.print("""
                         The number victory of wins cannot be greater than the number of matches played!
                         Please, try again...
                         """);
-                i++;
             }
             else if(victory < 0)
             {
@@ -172,7 +178,6 @@ public class MatchController
                         The number of wins must not be below zero!
                         Please, try again...
                         """);
-                i++;
             }
             else
             {
@@ -186,32 +191,36 @@ public class MatchController
     private void interactionClearFile()
     {
         matchServiceIMP.clearFile();
-        for (int i = 0; i < 1000; i++) {
+        while (true) 
+        {
             System.out.println("Do you want to add new players to your archive?(Y/N)");
-            String cacheD = sc.next();
+            String cacheD = sc.nextLine();
 
-            if (cacheD.equals("Y")) {
+            if (cacheD.equalsIgnoreCase("Y")) 
+            {
                 interactionCreatePlayer();
-                for (int j = 0; j < 1000; j++) {
+                while (true) {
                     System.out.println("Do you want to add more players? (Y/N)");
-                    String cacheS = sc.next();
+                    String cacheS = sc.nextLine();
 
-                    if (cacheS.equals("Y")) {
+                    if (cacheS.equalsIgnoreCase("Y")) 
+                    {
                         interactionCreatePlayer();
-                        j++;
-                    } else if (cacheS.equals("N")) {
+                    } else if (cacheS.equalsIgnoreCase("N")) {
                         break;
                     } else {
                         System.out.println("Invalid option. Please, try again.");
-                        j++;
                     }
                 }
                 break;
-            } else if (cacheD.equals("N")) {
+            } 
+            else if (cacheD.equalsIgnoreCase("N")) 
+            {
                 break;
-            } else {
+            } 
+            else 
+            {
                 System.out.println("Invalid option. Please, try again.");
-                i++;
             }
         }
     }
