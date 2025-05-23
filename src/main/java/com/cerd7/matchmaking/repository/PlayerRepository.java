@@ -54,7 +54,7 @@ public class PlayerRepository {
             if(file.length() > 0)
             {
                 objectMapper.writeValue(new File(String.valueOf(file)), Collections.emptyList());
-                System.out.println("FILE CLEARED! ˗ˏˋ ✸ ˎˊ˗");
+                System.out.println("FILE CLEARED! ˗ˏˋ✸ˎˊ˗");
             }else {
                 System.out.println("FILE IS EMPTY!");
             }
@@ -125,7 +125,6 @@ public class PlayerRepository {
                     matchedPlayerNicknames.add(p1.getNickname());
                     matchedPlayerNicknames.add(p2.getNickname());
 
-                    System.out.println("match exist");
                     matches.add(Arrays.asList(p1, p2));
                     System.out.print("""
                             \nMatch created:\s

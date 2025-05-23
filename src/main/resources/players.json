@@ -1,1 +1,68 @@
-[{"name":"caio","country":"BRA","inQueue":false,"statusPlayer":{"winRate":30.0,"qtyGamePlayed":10,"victory":3,"elo":"Unranked"}},{"name":"Cerd dev","country":"USA","inQueue":true,"statusPlayer":{"winRate":30.0,"qtyGamePlayed":10,"victory":3,"elo":"Unranked"}},{"name":"SERGINHO BALATENSA","country":"bra","inQueue":true,"statusPlayer":{"winRate":50.0,"qtyGamePlayed":30,"victory":15,"elo":"Silver"}},{"name":"Juninho balala","country":"BRA","inQueue":true,"statusPlayer":{"winRate":50.0,"qtyGamePlayed":90,"victory":45,"elo":"Diamond"}}]
+[
+  {
+    "name": "caio",
+    "country": "USA",
+    "inQueue": true,
+    "statusPlayer": {
+      "winRate": 30.0,
+      "qtyGamePlayed": 10,
+      "victory": 3,
+      "elo": "Unranked"
+    }
+  },
+  {
+    "name": "Cerd dev",
+    "country": "USA",
+    "inQueue": true,
+    "statusPlayer": {
+      "winRate": 30.0,
+      "qtyGamePlayed": 10,
+      "victory": 3,
+      "elo": "Unranked"
+    }
+  },
+  {
+    "name": "SERGINHO BALATENSA",
+    "country": "BRA",
+    "inQueue": true,
+    "statusPlayer": {
+      "winRate": 50.0,
+      "qtyGamePlayed": 30,
+      "victory": 15,
+      "elo": "Silver"
+    }
+  },
+  {
+    "name": "Juninho balala",
+    "country": "BRA",
+    "inQueue": true,
+    "statusPlayer": {
+      "winRate": 50.0,
+      "qtyGamePlayed": 90,
+      "victory": 45,
+      "elo": "Diamond"
+    }
+  },
+  {
+    "name": "felca",
+    "country": "BRA",
+    "inQueue": true,
+    "statusPlayer": {
+      "winRate": 50.0,
+      "qtyGamePlayed": 30,
+      "victory": 15,
+      "elo": "Diamond"
+    }
+  },
+  {
+    "name": "dilera",
+    "country": "BRA",
+    "inQueue": true,
+    "statusPlayer": {
+      "winRate": 50.0,
+      "qtyGamePlayed": 30,
+      "victory": 15,
+      "elo": "Silver"
+    }
+  }
+]
