@@ -39,9 +39,8 @@ public class MatchServiceImp implements MatchService
 
     public void readFileContent()
     {
-        System.out.print("So you want to see all the players. Let's go...");
-        System.out.print("So you want to see all the players. Let's go...");
-            playerRepository.readPlayers(1);
+        System.out.println("So you want to see all the players. Let's go...");
+        playerRepository.readPlayers(/*1*/);
     }
 
     @Override

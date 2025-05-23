@@ -12,11 +12,11 @@ public class PlayerRepository {
     private List<Player> lookingPlayers;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public void readPlayers(int input) {
+    public void readPlayers(/*int input*/) {
         try {
             lookingPlayers = objectMapper.readValue(new File(String.valueOf(file)), objectMapper.getTypeFactory().constructCollectionType(List.class, Player.class));
 
-            switch (input)
+            /*switch (input)
             {
                 case 1:
                 {
@@ -36,11 +36,11 @@ public class PlayerRepository {
                     break;
                 default:///infos erradas
                     break;
-            }
+            }*/
             for (Player player : lookingPlayers)
             {
                 if (player.getNickname() != null) {
-                    System.out.println(player.getNickname() + "  " + player.getPlayerStatus().getElo());
+                    System.out.println("USERNAME =>["+player.getNickname()+"]"+" | ELO =>["+player.getPlayerStatus().getElo()+"]");
                 }
             }
         } catch (Exception e) {
@@ -130,8 +130,8 @@ public class PlayerRepository {
                     System.out.print("""
                             \nMatch created:\s
                             \s""");
-                    System.out.println("NICKNAME: " + p1.getNickname() + " | ELO: " + p1.getPlayerStatus().getElo() +
-                            " -X- " + "NICKNAME: " + p2.getNickname() + " | ELO: " + p2.getPlayerStatus().getElo());
+                    System.out.println("USERNAME =>["+p1.getNickname()+"]" + " | ELO =>["+p1.getPlayerStatus().getElo()+"]"+
+                            " VS " + "USERNAME =>["+p2.getNickname()+"]"+"| ELO =>[" + p2.getPlayerStatus().getElo()+"]");
                 }
                 else
                 {
@@ -152,8 +152,8 @@ public class PlayerRepository {
             if (!unmatched.isEmpty()) {
                 System.out.println("\nPlayers returned to queue without matches: " + unmatched.size());
                 for (Player p : unmatched) {
-                    System.out.println("-> " + p.getNickname() + " (Country: " + p.getCountry() +
-                            " | Elo: " + p.getPlayerStatus().getElo() + ")");
+                    System.out.println("👾"+p.getNickname()+" -> "+ " COUNTRY =>["+p.getCountry()+"]" +
+                            " - ELO =>[" + p.getPlayerStatus().getElo()+"]");
                 }
             }
             System.out.println("\nTotal matches created: " + matches.size());

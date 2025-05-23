@@ -17,7 +17,7 @@ public class MatchController
 
     private void startInteraction() {
         int input;
-        System.out.print("\u001b[1;32m");
+        System.out.print("\u001b[1;31m");
         System.out.println(
                 """
                 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⠉⠐⠙⠦⠉⠀⠀⠠⢀⠀⠀⠠⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀                          ⌇⌇⌇⌇⌇⌇⌇⌇⌇⌇⌇
@@ -44,9 +44,10 @@ public class MatchController
                 ⠄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠚⢿⣿⣿⣿⠀⠀⠀⠠⠀⡀⠀⠀⠀⠄⠀⠀⠁⡀⠀⠀⠀⡀⠀⠀⠁⠀⠀⠀⠀⠀⠀⠀⠀⣀⣴⣶⢸               ⌇⌇⌇⌇⌇⌇⌇⌇⌇⌇⌇
                 ⣶⣿⡷⡒⢠⠄⢀⠀⠀⠀⠀⠀⠀⠸⣿⣿⡿⠐⠀⠀⠀⠀⠀⠀⠀⠐⡴⠀⠀⠀⠐⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣤⣤⣟⣻⣿⣿⣇               ⌇⌇⌇⌇⌇⌇⌇⌇⌇⌇⌇
                 ⠋⠁⢰⡇⠀⠀⠀⠀⠈⣶⣶⠀⢤⠀⣿⣿⣿⣇⠀⠀⠀⠀⠀⠀⢠⠅⠀⢂⠀⠀⠀⠀⢀⠀⠀⢀⠀⠄⢰⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿               ⌇⌇⌇⌇⌇⌇⌇⌇⌇⌇⌇
-                ⠀⠀⢸⡇⠀⠀⠀⠀⠀⣿⣿⠀⢸⣠⣿⣿⣿⣿⡀⠀⠂⠀⠀⠂⠁⠀⠀⠀⠀⠀⠀⠀⠂⠈⠀⢸⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿  (☞ ͡° ͜ʖ ͡°)☞ @cerddev\s
+                ⠀⠀⢸⡇⠀⠀⠀⠀⠀⣿⣿⠀⢸⣠⣿⣿⣿⣿⡀⠀⠂⠀⠀⠂⠁⠀⠀⠀⠀⠀⠀⠀⠂⠈⠀⢸⠀⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿  (☞ ͡° ͜ʖ ͡°)☞   @cerddev\s
                 """
         );
+        System.out.print("\u001b[1;0m");
         System.out.println(
                 """
                         \s
@@ -56,6 +57,7 @@ public class MatchController
         );
 
         do {
+            System.out.print("\u001b[1;32m");
             System.out.println(
                     """
                                                     OPTIONS:
@@ -70,6 +72,7 @@ public class MatchController
 
             System.out.print("Select an option: ");
             input = sc.nextInt();sc.nextLine();
+            System.out.print("\u001b[1;0m");
 
             switch (input) {
                 case 1:
@@ -102,7 +105,6 @@ public class MatchController
         int gamePlayed = 0;
         int victory = 0;
 
-        System.out.print("\u001b[1;37m");
         System.out.println("Welcome on space for create a new player. Let's go!");
         System.out.print("Set the name of the player: ");
         String name = sc.nextLine();
@@ -132,10 +134,10 @@ public class MatchController
         {
             System.out.print("Is your player in queue? (Y/N): ");
             String inQueueValue = sc.nextLine();
-            if (inQueueValue.equals("Y")) {
+            if (inQueueValue.equalsIgnoreCase("Y")) {
                 inQueue = true;
                 break;
-            } else if (inQueueValue.equals("N")) {
+            } else if (inQueueValue.equalsIgnoreCase("N")) {
                 break;
             } else {
                 System.out.println("Invalid option. Please, try again.");
